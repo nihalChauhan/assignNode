@@ -1,6 +1,8 @@
+//Import express and router
 const express = require('express');
 const route = express.Router();
 
+//Import route files
 const routeStudent = require('./routeStudent');
 const routeCompany = require('./routeCompany');
 const routeRegistration = require('./routeRegistration');

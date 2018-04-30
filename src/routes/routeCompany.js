@@ -3,6 +3,7 @@ let controllerCompany = require('../controllers/controllerCompany');
 let router = require('express').Router();
 let middlewareSuperAuthCheck = require('../middlewares/middlewareSuperAuthCheck');
 
+//endpoint definitions for company
 router.post("/create", middlewareSuperAuthCheck,controllerCompany.controllerCreateCompany);
 router.put("/update", middlewareSuperAuthCheck,controllerCompany.controllerUpdateCompany);
 router.get("/list", middlewareSuperAuthCheck,controllerCompany.controllerListCompanies);

@@ -7,7 +7,7 @@ for (let k in envConfig) {
 }
 
 /*
- Import model connection just to establish model connectinon
+ Import model connection just to establish model connection
  */
 require("./connections/mongoConnection");
 

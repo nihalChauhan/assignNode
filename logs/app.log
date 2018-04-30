@@ -1,0 +1,8 @@
+{"level":"info","message":"Base API is: /api/v1","timestamp":"2018-04-30T20:35:15.404Z"}
+{"level":"info","message":"Server is running at port 8080","timestamp":"2018-04-30T20:35:15.413Z"}
+{"level":"info","message":"connected on: mongodb://localhost:27017/assignment","timestamp":"2018-04-30T20:35:15.432Z"}
+{"level":"info","message":"connection established on: mongodb://localhost:27017/assignment","timestamp":"2018-04-30T20:35:15.433Z"}
+{"level":"info","message":"Base API is: /api/v1","timestamp":"2018-04-30T20:42:27.610Z"}
+{"level":"info","message":"Server is running at port 8080","timestamp":"2018-04-30T20:42:27.620Z"}
+{"level":"info","message":"connected on: mongodb://localhost:27017/assignment","timestamp":"2018-04-30T20:42:27.639Z"}
+{"level":"info","message":"connection established on: mongodb://localhost:27017/assignment","timestamp":"2018-04-30T20:42:27.641Z"}
