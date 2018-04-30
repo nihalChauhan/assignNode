@@ -1,7 +1,7 @@
 // Middleware, this will validate authentication token for super auth.
 module.exports = function(request, response, next) {
-	let password = request.headers.password;
-	if (process.env.DEBUG !== 'true' || !password || password !== process.env.SUPER_AUTH_PASSWORD) {
+	let authentication = request.headers.authentication;
+	if (authentication !== process.env.SUPER_AUTH_TOKEN) {
 		// Cannot delete in production system
 		return response.sendStatus(401);
 	} else {
