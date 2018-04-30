@@ -7,6 +7,7 @@ router.post("/create", middlewareSuperAuthCheck,controllerCompany.controllerCrea
 router.put("/update", middlewareSuperAuthCheck,controllerCompany.controllerUpdateCompany);
 router.get("/list", middlewareSuperAuthCheck,controllerCompany.controllerListCompanies);
 router.get("/:id", middlewareSuperAuthCheck,controllerCompany.controllerGetCompany);
+router.delete("/", middlewareSuperAuthCheck, controllerCompany.controllerDeleteCompany);
 
 // export related methods
 module.exports = router;

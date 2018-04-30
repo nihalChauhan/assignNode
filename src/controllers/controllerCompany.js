@@ -17,9 +17,14 @@ let controllerGetCompany = function (request, response) {
   modelCompany.getCompany (request, response);
 };
 
+let controllerDeleteCompany = function (request, response) {
+  modelCompany.deleteCompany (request, response);
+};
+
 module.exports = {
   controllerCreateCompany,
   controllerUpdateCompany,
   controllerListCompanies,
-  controllerGetCompany
+  controllerGetCompany,
+  controllerDeleteCompany
 };

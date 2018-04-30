@@ -525,8 +525,7 @@ studentSchema.statics.deleteStudent = function (request, response) {
     else if (!student) {
       winston.log('error', {
         error: 'Student Not Found',
-        action: 'student-delete-lookup',
-        id: request.body.studentId
+        action: 'student-delete-lookup'
       });
       return response.status(400).json({
         error: 'Not found',

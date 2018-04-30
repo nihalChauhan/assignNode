@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const utilDate = require('../utils/utilDate');
 const winston = require('../utils/utilLogger');
 const validator = require('validatorjs');
+const async = require('async');
 const constants = require('../controllers/constants');
 
 let companySchema = new Schema({
@@ -250,6 +251,87 @@ companySchema.statics.getCompany = function (request, response) {
     return response.status(201).json({
       result: company
     });
+  });
+};
+
+
+companySchema.statics.deleteCompany = function (request, response) {
+  this.findOne({'_id': request.body.id}, (error, company) => {
+    if (error) {
+      winston.log('error', {
+        error: error,
+        action: 'company-delete-lookup'
+      });
+      return response.status(400).json({
+        error: 'Internal Error',
+        message: 'Unable to perform at this time',
+        errorCode: constants.ErrorCodes.UNABLE_TO_PERFORM,
+      });
+    }
+    else if (!company) {
+      winston.log('error', {
+        error: 'Company Not Found',
+        action: 'company-delete-lookup',
+        id: request.body.studentId
+      });
+      return response.status(400).json({
+        error: 'Not found',
+        message: 'No such student exists',
+        errorCode: constants.ErrorCodes.INVALID_INPUT,
+      });
+    }
+    if (company.applied === []) {
+      return this.remove({'_id': request.body.id}, (error) => {
+        if(error) {
+          winston.log('error', {
+            error: error,
+            action: 'company-delete-remove'
+          });
+          return response.status(400).json({
+            error: 'Internal Error',
+            message: 'Unable to perform at this time',
+            errorCode: constants.ErrorCodes.UNABLE_TO_PERFORM,
+          });
+        }
+        return response.sendStatus(204);
+      });
+    }
+    else {
+      return this.remove({'_id': request.body.id}, (error) => {
+        if(error) {
+          winston.log('error', {
+            error: error,
+            action: 'company-delete-remove'
+          });
+          return response.status(400).json({
+            error: 'Internal Error',
+            message: 'Unable to perform at this time',
+            errorCode: constants.ErrorCodes.UNABLE_TO_PERFORM,
+          });
+        }
+        response.sendStatus(204);
+        let modelStudent = require('./modelStudent');
+        modelStudent.find({'_id': {$in: company.applied}}, (error, result) => {
+          return async.each(result, (s, callback) => {
+            s.appliedCount--;
+            modelStudent.update({'_id': s.id}, s, (error, result) => {
+              if (error) {
+                callback(error);
+              }
+              callback(null);
+            });
+          }, (error) => {
+            if(error) {
+              winston.log('error', {
+                error: error,
+                action: 'company-delete-updateStudent'
+              });
+            }
+            return;
+          });
+        });
+      });
+    }
   });
 };
 
