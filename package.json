@@ -4,6 +4,7 @@
   "description": "Node project for CMS placement event for students and companies.",
   "main": "index.js",
   "dependencies": {
+    "async": "^2.6.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",

@@ -7,6 +7,7 @@ router.post("/create", middlewareSuperAuthCheck,controllerStudent.controllerCrea
 router.put("/update", middlewareSuperAuthCheck,controllerStudent.controllerUpdateStudent);
 router.get("/list", middlewareSuperAuthCheck,controllerStudent.controllerListStudents);
 router.get("/:id", middlewareSuperAuthCheck,controllerStudent.controllerGetStudent);
+router.delete("/", middlewareSuperAuthCheck,controllerStudent.controllerDeleteStudent);
 
 // export related methods
 module.exports = router;

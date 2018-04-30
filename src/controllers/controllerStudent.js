@@ -17,9 +17,14 @@ let controllerGetStudent = function (request, response) {
   modelStudent.getStudent (request, response);
 };
 
+let controllerDeleteStudent = function (request, response) {
+  modelStudent.deleteStudent (request, response);
+};
+
 module.exports = {
   controllerCreateStudent,
   controllerUpdateStudent,
   controllerListStudents,
-  controllerGetStudent
+  controllerGetStudent,
+  controllerDeleteStudent
 };
